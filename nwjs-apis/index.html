@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+    <html>
+        <head> <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>nwjs apis</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!-- [if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif] -->
+        <p>'Right click' to show context menu.</p>
+        <script>
+            // 创建一个空菜单
+            var menu = new nw.Menu();
+            // 添加菜单项
+            menu.append(new nw.MenuItem({
+                label: 'Item A',
+                click: function () {
+                    alert('You have clicked at "Item A"');
+                }
+            }));
+            menu.append(new nw.MenuItem({label: 'Item B'}));
+            menu.append(new nw.MenuItem({type: 'separator'}));
+            menu.append(new nw.MenuItem({label: 'Item C'}));
+            // 监听事件
+            document.body.addEventListener('contextmenu', function (ev) { // 阻止显示默认菜单
+                ev.preventDefault();
+                // 点击处弹出定义的菜单对象
+                menu.popup(ev.x, ev.y);
+                return false;
+            }, false);
+        </script>
+    </body>
+</html>
